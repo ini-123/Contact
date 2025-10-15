@@ -1,0 +1,184 @@
+/* Basic reset and variables */
+:root{
+  --bg: #e6f4ec; /* pale green background */
+  --card: #ffffff;
+  --muted: #6b8b83;
+  --accent: #0a6b58; /* dark green */
+  --accent-2: hsl(148, 38%, 91%); /* light accent - updated from style guide */
+  --danger: #d9534f;
+  --radius: 12px;
+  --max-width: 720px;
+  --gap: 20px;
+  --input-border: #cfd9d6;
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --font-stack: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: var(--font-stack);
+  font-weight:var(--fw-regular);
+  background:var(--bg);
+  color:#123; /* near black */
+}
+
+/* headings, labels and strong controls */
+h1,h2,h3,h4,h5,h6,.card-title,label,strong,.btn{font-weight:var(--fw-bold)}
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+}
+.card{
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:40px;
+  box-shadow:0 2px 0 rgba(0,0,0,0.02);
+}
+.card-title{
+  margin:0 0 24px 0;
+  color:var(--accent);
+  font-size:24px;
+  font-weight:700;
+}
+.row{display:flex;gap:var(--gap)}
+.two-up .field{flex:1}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
+.req{color:var(--accent);font-weight:700;margin-left:6px}
+input[type="text"],input[type="email"],textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid var(--input-border);
+  border-radius:8px;
+  font-size:15px;
+  color:#022;
+  background:transparent;
+  cursor: pointer;
+}
+
+/* hover state for text-like inputs - use the style guide green */
+input[type="text"]:hover,
+input[type="email"]:hover,
+textarea:hover{
+  border-color: hsl(169, 82%, 27%);
+  box-shadow: 0 0 0 4px rgba(10,107,88,0.06);
+}
+
+/* Remove colored background that some browsers apply when fields are autofilled */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus{
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  background-clip: padding-box !important;
+}
+
+/* For inputs that are filled (valid), keep background transparent */
+input:not(:placeholder-shown), textarea:not(:placeholder-shown), input:valid, textarea:valid{
+  background: transparent;
+}
+textarea{resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(10,107,88,0.06)}
+.radios{display:flex;gap:12px}
+.radio-btn{position:relative;display:flex;align-items:center;padding:10px 14px;border:1px solid var(--input-border);border-radius:8px;flex:1;gap:12px;padding-left:48px}
+.radio-btn{cursor: pointer}
+/* hide the native input visually but keep it accessible */
+.radio-btn input{position:absolute;left:16px;top:50%;transform:translateY(-50%);opacity:0;width:18px;height:18px;margin:0}
+/* the circular radio box that holds the icon */
+.radio-icon{display:flex;align-items:center;justify-content:center;position:absolute;left:12px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:999px;background:#fff;border:1px solid var(--input-border);pointer-events:none;padding:3px}
+.radio-icon img{width:100%;height:100%;display:none;object-fit:contain}
+/* when the radio input is checked, show icon and apply accent background */
+.radio-btn input:checked ~ .radio-icon{background:var(--accent-2);border-color:var(--accent)}
+.radio-btn input:checked ~ .radio-icon img{display:block}
+/* focus styles: show subtle ring when the (visually hidden) input receives focus */
+.radio-btn input:focus ~ .radio-icon{box-shadow:0 0 0 4px rgba(10,107,88,0.08)}
+/* style the full option box when the radio is selected (uses :has - modern browsers) */
+.radio-btn:has(input:checked){
+  background:var(--accent-2);
+  border-color:var(--accent);
+}
+.radio-btn:has(input:focus){
+  box-shadow:0 0 0 4px rgba(10,107,88,0.06);
+}
+/* Fallback for browsers that don't support :has() - JS will add .selected */
+.radio-btn.selected{
+  background:var(--accent-2);
+  border-color:var(--accent);
+}
+
+/* Remove default fieldset border and align legend with labels */
+fieldset{border:none;margin:0;padding:0}
+.radio-set{margin:0 0 18px}
+.radio-set legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
+.checkbox-wrap{position:relative;display:flex;gap:12px;align-items:flex-start}
+.checkbox-wrap{cursor: pointer}
+.checkbox-wrap input{width:18px;height:18px;opacity:0;position:relative;z-index:2}
+/* checkbox icon container */
+.checkbox-icon{display:flex;align-items:center;justify-content:center;width:20px;height:20px;border:1px solid var(--input-border);border-radius:4px;background:#fff;flex:0 0 20px;position:absolute;left:0;top:0;padding:3px}
+/* show check only when the real checkbox is checked */
+.checkbox-wrap input:checked ~ .checkbox-icon{background:var(--accent-2);border-color:var(--accent)}
+.checkbox-wrap input:checked ~ .checkbox-icon img{display:block}
+.checkbox-icon img{display:none;width:100%;height:100%;object-fit:contain}
+.toast-icon img{width:20px;height:21px}
+.consent-label{margin-left:28px;display:block}
+.actions{margin-top:18px}
+.btn{display:block;width:100%;background:linear-gradient(180deg,var(--accent),#0a503f);color:#fff;padding:14px;border-radius:10px;border:none;font-weight:600;cursor:pointer}
+.btn{transition:transform .06s ease,filter .12s ease,box-shadow .12s ease}
+.btn:hover{background: hsl(187, 24%, 22%);filter:brightness(.98);box-shadow:0 6px 20px rgba(10,80,63,0.12)}
+.btn:active{transform:translateY(1px)}
+.attribution{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+.attribution a{color:var(--muted)}
+.error{color:var(--danger);font-size:13px;margin-top:8px;min-height:18px}
+/* toast */
+.toast{position:fixed;left:50%;transform:translateX(-50%);top:24px;background:#25403f;color:#fff;padding:18px 20px;border-radius:8px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,0.08);opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+.toast.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.toast-icon{width:40px;height:40px;flex:0 0 40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:999px}
+.toast-icon img{width:20px;height:21px}
+.toast-title{display:block;font-weight:700}
+.toast-body{opacity:0.9;margin:0}
+.toast-close{background:transparent;border:none;color:#cfe6e0;margin-left:8px;font-size:18px;cursor:pointer}
+/* validation styles */
+.input-error{border-color:var(--danger)!important;box-shadow:none}
+.radio-btn.error{border-color:var(--danger)}
+.attribution{
+    color: hsl(186, 15%, 59%);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+.attribution img{
+    width: 20px;
+    margin-bottom: -7px;
+    margin-right: 2px;
+}
+.attribution a{
+    color: hsl(187, 24%, 22%)
+;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* responsive */
+@media (max-width:700px){
+  .card{padding:28px;border-radius:12px}
+  .two-up{flex-direction:column}
+}
+@media (max-width:420px){
+  .card{padding:20px}
+  .card-title{font-size:22px}
+}
+
+/* stack radio options on narrow viewports */
+@media (max-width:550px){
+  .radios{flex-direction:column}
+  .radio-btn{width:100%;padding-left:48px}
+}

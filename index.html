@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frontend Mentor | Contact form</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <!-- toast for success -->
+      <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-icon" aria-hidden="true">
+          <img src="assets/images/icon-success-check.svg" alt="" />
+        </div>
+        <div class="toast-inner">
+          <strong class="toast-title">Message Sent!</strong>
+          <p class="toast-body">Thanks for completing the form. We'll be in touch soon!</p>
+        </div>
+        <button id="toast-close" class="toast-close" aria-label="Close notification">✕</button>
+      </div>
+
+      <form id="contact-form" class="card" novalidate>
+        <h1 class="card-title">Contact Us</h1>
+
+        <div class="row two-up">
+          <div class="field">
+            <label for="firstName">First Name <span class="req">*</span></label>
+            <input id="firstName" name="firstName" type="text" required />
+            <p class="error" data-for="firstName" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last Name <span class="req">*</span></label>
+            <input id="lastName" name="lastName" type="text" required />
+            <p class="error" data-for="lastName" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address <span class="req">*</span></label>
+          <input id="email" name="email" type="email" placeholder="email@example.com" required />
+          <p class="error" data-for="email" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="field radio-set">
+          <legend>Query Type <span class="req">*</span></legend>
+          <div class="radios">
+            <label class="radio-btn">
+              <input type="radio" name="query" value="general" required />
+              <span>General Enquiry</span>
+              <!-- radio selected icon (hidden unless checked) -->
+              <span class="radio-icon" aria-hidden="true">
+                <img src="assets/images/icon-radio-selected.svg" alt="" />
+              </span>
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="query" value="support" />
+              <span>Support Request</span>
+              <span class="radio-icon" aria-hidden="true">
+                <img src="assets/images/icon-radio-selected.svg" alt="" />
+              </span>
+            </label>
+          </div>
+          <p class="error" data-for="query" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="field">
+          <label for="message">Message <span class="req">*</span></label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <p class="error" data-for="message" aria-live="polite"></p>
+        </div>
+
+        <div class="consent">
+          <label class="checkbox-wrap">
+            <input id="consent" name="consent" type="checkbox" required />
+            <span class="consent-label">I consent to being contacted by the team <span class="req">*</span></span>
+            <span class="checkbox-icon" aria-hidden="true">
+              <img src="assets/images/icon-checkbox-check.svg" alt="" />
+            </span>
+          </label>
+          <p class="error" data-for="consent" aria-live="polite"></p>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+
+      
+    </main>
+    <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#"><img src="assets/images/TPMono.png" alt="I.T.P logo">I.T.P</a>.
+  </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
